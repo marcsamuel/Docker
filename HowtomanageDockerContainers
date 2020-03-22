@@ -1,0 +1,57 @@
+#How to manage Docker containers
+#https://docs.microsoft.com/en-us/learn/modules/intro-to-docker-containers/4-how-docker-containers-work
+
+#How to view available containers
+#We use the docker ps command to list running containers. If you want to see all containers in all states, pass the -a argument.
+#Here is an example.
+
+
+docker ps -a
+
+#Here is the output from the above command.
+#CONTAINER ID    IMAGE        COMMAND         CREATED       STATUS                                PORTS         NAMES
+#d93d40cc1ce9    tmp-ubuntu:latest  "dotnet website.dll …"  6 seconds ago    Up 5 seconds        8080/tcp      happy_wilbur
+#33a6cf71f7c1    tmp-ubuntu:latest  "dotnet website.dll …"  2 hours ago     Exited (0) 9 seconds ago            adoring_borg
+
+#How to run a container
+#Use the docker run command to start a container. We only need to specify the image to run with its name or ID to launch the container from the image. A container launched in this manner provides the user with an interactive experience.
+#Here, we're adding the -d flag to run the container with our website in the background.
+
+docker run -d tmp-ubuntu
+
+#The command, in this case, only returns the ID of the new container.
+#Once an image is specified to run, Docker finds the image, loads container from the image, and executes the command specified as the entry point. 
+#It's at this point that the container is available for management.
+
+#How to pause a container
+#We use the docker pause command to pause a container. Here is an example.
+
+docker pause happy_wilbur
+
+#Pausing a container will suspend all processes. This command allows the container to continue processes at a later stage. 
+#The docker unpause command unsuspends all processes.
+
+#How to restart a container
+#We use the docker restart command to restart containers. Here is an example.
+
+docker restart happy_wilbur
+
+#The container receives a stop command, followed by a start command. 
+#If the container doesn't respond to the stop command, then a kill signal is sent.
+
+#How to stop a container
+#We use the docker stop command to stop a running container. Here is an example.
+
+docker stop happy_wilbur
+
+#The stop command sends a termination signal to the container and the process running in the container.
+
+#How to remove a container
+#We use the docker rm command to remove a container. Here is an example.
+
+docker rm happy_wilbur
+
+#All data in the container is destroyed once you remove the container. 
+#It's essential to always consider containers as temporary when thinking about storing data.
+
+
