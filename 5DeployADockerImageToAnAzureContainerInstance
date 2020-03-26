@@ -1,0 +1,22 @@
+#https://docs.microsoft.com/en-us/learn/modules/intro-to-containers/6-deploy-docker-image-to-container-instance
+
+az acr create --name myregistry --resource-group mygroup --sku standard --admin-enabled true
+
+docker login myregistry.azurecr.io
+
+az acr credential show --name myregistry
+
+docker tag myapp:v1 myregistry.azurecr.io/myapp:v1
+
+docker push myregistry.azurecr.io/myapp:v1
+
+az acr repository list --name myregistry
+
+az acr repository show --repository myapp --name myregistry
+
+#Using Azure Container Instance to run an image
+
+az container create --resource-group mygroup --name myinstance --image myregistry.azurecr.io/myapp:latest --dns-name-label mydnsname --registry-username <username> --registry-password <password>
+
+az container show --resource-group mygroup --name myinstance --query ipAddress.fqdn
+
