@@ -1,3 +1,4 @@
+# URL https://docs.microsoft.com/en-us/learn/modules/publish-container-image-to-azure-container-registry/5-dockerfile-components
 # Step 1: Specify the parent image for the new image
 FROM ubuntu:18.04
 
